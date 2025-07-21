@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorola Solutions | Path to $100M New ARR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .kpi-card {
+            background-color: #003f5c;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .kpi-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .kpi-value {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffa600;
+        }
+        .kpi-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .flowchart-step {
+            border: 2px solid #665191;
+            background-color: white;
+            color: #003f5c;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        .flowchart-arrow {
+            color: #665191;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .flowchart-base {
+            background-color: #2f4b7c;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .table-header {
+            background-color: #003f5c;
+            color: white;
+        }
+        .table-cell-strong {
+            font-weight: 700;
+            color: #2f4b7c;
+        }
+        .opportunity-card {
+            border-left: 5px solid #ffa600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#003f5c]">Project Nitro: The Path to $100M</h1>
+            <p class="text-lg text-gray-600 mt-2">A Strategic Plan for Achieving $100M in New Annual Recurring Revenue in 24 Months</p>
+        </header>
+
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="kpi-card shadow-lg">
+                    <div class="kpi-title">Our Goal</div>
+                    <div class="kpi-value">$100M</div>
+                    <div class="kpi-subtitle">New Annual Recurring Revenue</div>
+                </div>
+                <div class="kpi-card shadow-lg">
+                    <div class="kpi-title">Timeline</div>
+                    <div class="kpi-value">24</div>
+                    <div class="kpi-subtitle">Months</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Our Core Strategy: The Safety Reimagined Ecosystem</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Our growth will be driven by selling an integrated suite of solutions—video security, access control, command center software, and mission-critical communications. This platform approach moves customers from single-product purchases to high-value, recurring revenue subscriptions.</p>
+            <div class="flex flex-col md:flex-row items-stretch justify-center w-full">
+                <div class="flowchart-step">Detect</div>
+                <div class="flowchart-arrow">&rarr;</div>
+                <div class="flowchart-step">Analyze</div>
+                <div class="flowchart-arrow">&rarr;</div>
+                <div class="flowchart-step">Communicate</div>
+                <div class="flowchart-arrow">&rarr;</div>
+                <div class="flowchart-step">Respond</div>
+            </div>
+            <div class="flowchart-base">Foundation: Cloud Services, AI Analytics & Support</div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Market Opportunity Ranking by Potential ARR</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">This chart ranks the 18 target markets by their estimated potential for new Annual Recurring Revenue, based on a midpoint of 1-3% of their public safety budgets. State of Georgia and Chicago represent our largest opportunities.</p>
+            <div class="chart-container">
+                <canvas id="marketRankingChart"></canvas>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-12">
+            <h2 class="text-2xl font-bold text-[#003f5c] mb-6 text-center">Market Analysis Grid</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="table-header">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Market Name</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Current Business Summary</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">FY25/26 PS Budget (or Proxy)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Potential ARR (Midpoint of 1-3% TAM)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Key AI/SaaS Opportunities</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">State of Georgia</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Presence through Premier Avigilon & Motorola Two-Way Radio Dealers offering radios, systems, and maintenance contracts.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$2.6B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$52M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Proactive AI Enablement Strategy, AI Advisory Council, explicit budget for security tech in state prisons.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Chicago</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Headquarters in Chicago. Numerous existing contracts with City of Chicago (OEMC, Dept. of Aviation) for 2-way comms, repair, camera infra, radio equipment, dispatch systems.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$2.5B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$50M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Home market advantage with deep existing relationships. Smart Streets Pilot Program using camera tech and support for smart grid tech.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">San Francisco</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">"Prisons" listed as key focus area within Safety & Security Ecosystem.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$2B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$40M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">High per-capita spending and broad technology initiatives. City's "values shape technology" approach requires ethical use messaging.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Houston</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">HCI is leading Motorola Solutions Channel Partner. Offers radios, Avigilon portfolio (access control, video security, smart sensors, body-worn cameras, AI-enabled video analytics). Statewide DIR contract in Texas.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1.75B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$35M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Existing use of AI for predictive analysis and focus on data-driven decision-making. Strong channel partner facilitates rapid expansion.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Dallas</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Manufacturing facility in Richardson, TX, for Video Security & Analytics. HCI is a channel partner. Statewide DIR contract.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1.75B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$35M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Explicit plans for a CAD & RMS Universal Replacement and a Real Time Crime Center ($20.4M). Local manufacturing presence strengthens video security offerings.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Miami</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Corporate office in Plantation, FL. $165M, 10-year contract with Miami-Dade County for APX NEXT™ radios, including new radio sites and maintenance.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1.55B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$31M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Recent large radio contract indicates appetite for advanced, connected comms, providing pathway for AI-driven SaaS leveraging new radio systems.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">San Diego</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Maintenance and support for NetRMS interface with City of San Diego.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1.25B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$25M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">County-level commitment to AI modernization (dedicated AI committee, Microsoft Copilot pilot). Specific needs include AI-powered wildfire detection cameras and real-time monitoring for juvenile detention.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Phoenix</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Presence through Creative Communications Sales & Rentals Inc. for radio comms equipment.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$20M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Focus on reducing emergency response times and using AI for community engagement indicates readiness for data-driven operational improvements.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">San Antonio</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">$9.6M contract with SAFD for 1,200+ personnel radios. Motorola radios used by most large FDs.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$20M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Recent large radio contract provides immediate opportunity for cross-selling AI-driven software. City's Smart Cities Roadmap indicates strategic openness to technology integration.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Baltimore</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Office in Linthicum Heights, MD. Wireless Inc. is certified Motorola dealer. Contract with City of Baltimore for public safety comms (renewals through 2028).</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$950M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$19M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Fire Department already adopting AI in 911 center. Police Department faces severe staffing/overtime issues, ripe for AI solutions.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Seattle</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Day Wireless Systems is a premier Motorola Radio Dealer and Elite Specialist in Seattle. Offers two-way radio, broadband PTT, dispatch voice & CAD, Avigilon portfolio.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$805.39M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$16M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Investment in a Real Time Crime Center ($3.1M in 2025-26) directly aligns with Motorola's CommandCentral and real-time intelligence offerings.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Boston</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Comtronics Corp. (a BearCom Co.) is a Motorola Two-way Radio Dealer, serving New England since 1990. Offers radios, accessories, infrastructure, installations, repair, maintenance.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$800M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$16M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Ongoing deployment of social media analysis tools by police indicates a need for advanced intelligence and investigation software.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Detroit</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Broad presence in US, products available via Sourcewell contracts for public safety (P25 radio infra, dispatch consoles, Avigilon).</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$750M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$15M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">City's use of drones and AI for building efficiency. Past legal challenges regarding facial recognition highlight need for Motorola's "responsible AI".</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Honolulu</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">BearCom is the world's largest Motorola Partner, offering two-way radios for sale/rent. Products available through City & County purchasing system.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$657.2M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$13M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Staffing shortages in public safety agencies make AI-driven efficiency solutions appealing. Motorola's workflow automation and real-time intelligence can address challenges.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Charlotte</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Two listed addresses in Charlotte. Offers two-way radio solutions, software & applications, video security & analytics, public safety LTE & LMR, managed services. Federal contracts for cyber support and emergency response.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$650M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$13M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Budget focus on "Safe Communities" and state-level initiatives to expand body camera use align with Motorola's video security and evidence management solutions.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Las Vegas</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">$26M contract with Las Vegas METRO for ASTRO®25 digital radio system, APX™ radios, upgraded dispatch equipment. McIntosh Comm. offers MOTOTRBO solutions.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$650M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$13M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Recent large radio contract provides significant installed base for cross-selling AI-driven dispatch and command center software. City's $500M smart city investment opens doors for broader AI applications.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Memphis</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">ICI Wireless & Railcom are Motorola dealers. Offers two-way radio, broadband PTT, dispatch, security solutions (access control, body-worn cameras, LPR, smart sensors, weapons detection), and software.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$650M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$13M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Recent investment in an AI-powered Downtown Command Center and ongoing commitment to expanding camera networks and upgrading RTCC infrastructure.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Louisville</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">RCS Communications is Motorola's largest dealer in KY/IN. Offers two-way radio, wireless comms, video surveillance, Avtec IP dispatch consoles. Platinum Channel Partner.</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$400M</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm table-cell-strong">$8M</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Investment in "Drone as First Responder" (DFR) program and increased Flock cameras indicates strong adoption of cutting-edge public safety technology.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Sizing the Prize</h2>
+                 <p class="text-center text-gray-600 mb-6">Our total addressable market across these 18 key geographic markets is approximately $434 Million. To achieve our $100M ARR goal, we need to capture approximately 23.04% of this overall opportunity, highlighting a significant but achievable target.</p>
+                <div class="chart-container" style="height: 300px; max-height: 40vh;">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center">
+                 <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Top 3 Critical Security Needs in Cities</h2>
+                 <p class="text-center text-gray-600 mb-6">Beyond broad market verticals, specific security needs within cities represent high-value opportunities for our integrated AI/SaaS solutions. These are pervasive needs across many of our target markets.</p>
+                 <div class="space-y-4">
+                     <div class="opportunity-card bg-gray-50 rounded-lg p-4">
+                         <h3 class="font-bold text-lg text-[#2f4b7c]">✈️ Airport Security</h3>
+                         <p class="text-gray-600">Airports in many of our target cities (e.g., Chicago, Miami, Seattle) require advanced integrated security, real-time intelligence, and operational automation for passenger safety and efficiency.</p>
+                     </div>
+                     <div class="opportunity-card bg-gray-50 rounded-lg p-4">
+                         <h3 class="font-bold text-lg text-[#2f4b7c]">⛓️ Prison/Correctional Facility Security</h3>
+                         <p class="text-gray-600">Correctional facilities (e.g., State of Georgia, San Francisco) are high-demand areas for AI-driven surveillance, contraband detection, and inmate management systems to enhance safety and reduce costs.</p>
+                     </div>
+                     <div class="opportunity-card bg-gray-50 rounded-lg p-4">
+                         <h3 class="font-bold text-lg text-[#2f4b7c]">🏟️ Public Space Security (Stadiums, Parks, Ports)</h3>
+                         <p class="text-gray-600">Large public venues and spaces (e.g., Memphis, Las Vegas, San Antonio) need robust crowd management, threat detection, and communication solutions, aligning perfectly with our ecosystem offerings.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#d45087] mb-4 text-center">Top 5 Levers for Success (Controllable)</h2>
+                <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                    <li><span class="font-semibold">Sales Team Enablement:</span> Aggressively train enterprise sales teams to sell the full "Safety Reimagined" portfolio, not just point products.</li>
+                    <li><span class="font-semibold">Channel Partner Incentives:</span> Create compelling new ARR-based incentive programs for our key partners to drive cloud and subscription sales.</li>
+                    <li><span class="font-semibold">Integrated Product Bundles:</span> Develop easy-to-sell, high-value bundles (e.g., "Stadium Security Starter Kit") that combine hardware, software, and services.</li>
+                    <li><span class="font-semibold">Targeted Marketing Campaigns:</span> Launch vertical-specific marketing campaigns that speak directly to the pain points of our top opportunity areas (Airports, Venues, etc.).</li>
+                    <li><span class="font-semibold">Streamline Deployment & Onboarding:</span> Simplify the customer experience for cloud products to accelerate time-to-value and increase customer satisfaction.</li>
+                </ol>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#f95d6a] mb-4 text-center">Primary Obstacles to Success</h2>
+                 <ul class="list-disc list-inside space-y-3 text-gray-700">
+                     <li><span class="font-semibold">Fragmented Buying Centers:</span> Enterprise customers often have separate buyers for security, IT, and communications, complicating the integrated platform sale.</li>
+                     <li><span class="font-semibold">Competition from Niche Specialists:</span> We face strong competition from specialized SaaS vendors in areas like video management and access control.</li>
+                     <li><span class="font-semibold">Customer Inertia:</span> Convincing customers to move from a capital expenditure (CapEx) model to an operating expense (OpEx) subscription model requires a shift in mindset.</li>
+                     <li><span class="font-semibold">Complexity of Integration:</span> Demonstrating the seamless integration of our portfolio is crucial but can be technically challenging in diverse customer environments.</li>
+                     <li><span class="font-semibold">Salesforce Transformation:</span> Shifting the sales culture from a hardware-first to a solution/software-first approach takes time and consistent effort.</li>
+                 </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const brilliantBluesPalette = {
+            darkBlue: '#003f5c',
+            royalBlue: '#2f4b7c',
+            purple: '#665191',
+            magenta: '#a05195',
+            pink: '#d45087',
+            coral: '#f95d6a',
+            orange: '#ff7c43',
+            yellow: '#ffa600'
+        };
+
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+        
+        const defaultTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const renderMarketRankingChart = () => {
+            const ctx = document.getElementById('marketRankingChart').getContext('2d');
+            const marketData = [
+                { name: 'State of Georgia', arr: 52 },
+                { name: 'Chicago', arr: 50 },
+                { name: 'San Francisco', arr: 40 },
+                { name: 'Houston', arr: 35 },
+                { name: 'Dallas', arr: 35 },
+                { name: 'Miami', arr: 31 },
+                { name: 'San Diego', arr: 25 },
+                { name: 'Phoenix', arr: 20 },
+                { name: 'San Antonio', arr: 20 },
+                { name: 'Baltimore', arr: 19 },
+                { name: 'Seattle', arr: 16 },
+                { name: 'Boston', arr: 16 },
+                { name: 'Detroit', arr: 15 },
+                { name: 'Honolulu', arr: 13 },
+                { name: 'Charlotte', arr: 13 },
+                { name: 'Las Vegas', arr: 13 },
+                { name: 'Memphis', arr: 13 },
+                { name: 'Louisville', arr: 8 }
+            ].sort((a, b) => b.arr - a.arr); // Sort by ARR descending
+
+            const rawLabels = marketData.map(m => m.name);
+            const chartData = marketData.map(m => m.arr);
+            
+            const processedLabels = rawLabels.map(label => wrapLabel(label, 16));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: processedLabels,
+                    datasets: [{
+                        label: 'Potential ARR ($M)',
+                        data: chartData,
+                        backgroundColor: [
+                            brilliantBluesPalette.darkBlue,
+                            brilliantBluesPalette.royalBlue,
+                            brilliantBluesPalette.purple,
+                            brilliantBluesPalette.magenta,
+                            brilliantBluesPalette.pink,
+                            brilliantBluesPalette.coral,
+                            brilliantBluesPalette.orange,
+                            brilliantBluesPalette.darkBlue,
+                            brilliantBluesPalette.royalBlue,
+                            brilliantBluesPalette.purple,
+                            brilliantBluesPalette.magenta,
+                            brilliantBluesPalette.pink,
+                            brilliantBluesPalette.coral,
+                            brilliantBluesPalette.orange,
+                            brilliantBluesPalette.darkBlue,
+                            brilliantBluesPalette.royalBlue,
+                            brilliantBluesPalette.purple,
+                            brilliantBluesPalette.magenta
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Potential ARR in Millions ($)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: defaultTooltipCallback.plugins.tooltip
+                    }
+                }
+            });
+        };
+
+        const renderMarketShareChart = () => {
+            const ctx = document.getElementById('marketShareChart').getContext('2d');
+            // Sum of midpoint ARRs for the 18 markets
+            const totalTAM = 434; 
+            const goalARR = 100;
+            const percentageNeeded = ((goalARR / totalTAM) * 100).toFixed(2);
+            
+            const data = {
+                labels: [`Required Market Share (${percentageNeeded}%)`, 'Remaining Total Addressable Market'],
+                datasets: [{
+                    data: [goalARR, totalTAM - goalARR],
+                    backgroundColor: [brilliantBluesPalette.yellow, brilliantBluesPalette.darkBlue],
+                    hoverBackgroundColor: [brilliantBluesPalette.orange, '#002c40'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: `Target: ${percentageNeeded}% of Total Market`
+                        },
+                         tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed * 1000000);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+
+        window.onload = function() {
+            renderMarketRankingChart();
+            renderMarketShareChart();
+        };
+    </script>
+</body>
+</html>
